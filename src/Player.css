@@ -1,0 +1,124 @@
+.Player {
+    width: 80%;
+    height: 80%;
+    background-color: #443d7c;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 0px 21px 1px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 21px 1px rgba(255,255,255,1);
+    box-shadow: 0px 0px 21px 1px rgba(255,255,255,1);
+}
+
+.Left {
+    border-radius: 8px;
+    width: calc(100% - 260px);
+    height: 100%;
+    background-color: #443d7c;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-content: center; */
+    align-items: center;
+}
+
+.Right {
+    border-radius: 8px;
+    min-width: 260px;
+    /* height: 100%; */
+    overflow: auto;
+    background-color: #443d7c;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid whitesmoke;
+}
+
+.AlbumImg {
+    /* width: 38%; */
+    height: 55%;
+    margin-top: 4%;
+}
+
+.TrackLength {
+    margin: 20px 0;
+    width: 90%;
+    height: 4px;
+    border-radius: 8px;
+    background-color: whitesmoke;
+    flex: -1;
+    position: relative;
+    display: flex;
+    /* flex-basis: 100%; */
+    /* transition: height 0.3s; */
+    cursor: ew-resize;
+}
+
+.TrackLengthFilled {
+    width: 100%;
+    background: black;
+    flex: 0;
+    border-radius: 8px;
+
+  /* esto es lo que actualiza para la barra */
+     flex-basis: 0%;
+}
+
+.Controls {
+    /* background-color: floralwhite; */
+    display: flex;
+    justify-content: center;
+}
+
+.fas {
+    margin-right: 20px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.fas:last-of-type {
+    margin-right: 0;
+}
+
+.inactiveBtn {
+    display: none;
+}
+
+h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+.Card {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #443d7c;
+    /* overflow: auto; */
+    border-bottom: 1px solid white;
+}
+
+.Card img {
+    height: 70px;
+    margin-left: 10px;
+}
+
+.CardTitle {
+    /* background-color: floralwhite; */
+    margin: 0 auto;  
+    height: 100%;
+    text-align: center;
+}
+
+.CardTitle h4 {
+    margin: 0;
+    margin-top: 15px;
+}
