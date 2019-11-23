@@ -22,7 +22,8 @@ class App extends Component {
 
   state = {
         trackList: [],
-        objPos: 0
+        currentTrack: {},
+        currentId: '0'
       }
 
 
@@ -30,7 +31,24 @@ class App extends Component {
 
     axios.get('http://5dd1894f15bbc2001448d28e.mockapi.io/playlist')
     .then(response => {
+      console.log('response.data');
+      console.log(response.data);
+      // console.log(response);
       this.setState({trackList: response.data});
+      this.setState({currentTrack: response.data[0]});  
+      this.setState({currentId: response.data[0].id});
+
+      // for(let i = 0; i < response.data.length; i++){
+
+      //   console.log(response.data[i]);
+
+      //   // if(i === 0){
+      //   //   this.setState({
+      //   //     currentTrack: response.data[i],
+      //   //     currentId: response.data[i].id});
+      //   // }
+      //   // break;
+      // }
     })
     .catch(error => {
       alert("There's been an ERROR reload page")
@@ -115,9 +133,13 @@ class App extends Component {
     // })
 
     console.log(this.state.trackList);
-    console.log(this.state.objPos);
+    console.log(this.currentTrack);
+    console.log(this.currentId);
+    
 
-    console.log(this.state.trackList[this.state.objPos]);
+    //this works but it does not reflects in the return inside render()
+    //console.log(this.state.objPos);
+    //console.log(this.state.trackList[this.state.objPos]);
 
     const ListPlayer = this.state.trackList.map((item, pos) => {
 
@@ -142,7 +164,7 @@ class App extends Component {
           this.state.trackList !== undefined && this.state.trackList !== [] && this.state.trackList !== null ?
 
           <main>
-            {/* <PlayerLeft albumCover={this.state.trackList[this.state.objPos].albumCover} /> */}
+            {/* <PlayerLeft albumCover={this.state.currentTrack.albumCover} /> */}
 
             <aside className="Right"> 
               {ListPlayer}

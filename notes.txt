@@ -1,0 +1,17 @@
+regarding state.trackList
+
+The better way to do this would be, you store the information of current playing song inside a state variable say 'currentSongInfo' which contains the same object of each song which we are getting inside the API call response
+
+then you can directly use the album cover like this
+this.state.currentSongInfo.albumCover
+
+*******************************
+
+Yes, you can create a new variable of currentSongInfo in the state, and one more to store the current song position.
+So when someone clicks on the playlist card, you can get the id and using this id you can set the current song info in that state variable.
+
+Just like we did in the Video Watch Page Project which we covered in the live session
+
+********************************
+
+Exactly, this way it will be more convenient as we are having two more functionalities which are (a) shuffling the playlist songs (b) continue playing the same song
