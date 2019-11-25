@@ -11,7 +11,7 @@ const PlayerRight = (props) => {
                 <img src={props.listImage}
                     alt={props.altText}></img>
 
-                <div className="CardTitle">
+                <div className="CardTitle" onClick={props.onListClick}>
                     <h4>{props.track}</h4>
                     <h5>{props.artist}</h5>
                 </div>

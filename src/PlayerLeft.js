@@ -4,7 +4,7 @@ import './Player.css';
 
 const PlayerLeft = (props) => {
 
-    console.log(props);
+    // console.log(props);
 
     return(
 
@@ -12,8 +12,16 @@ const PlayerLeft = (props) => {
             <img className="AlbumImg" src={props.albumCover} 
                 alt={props.altText}/>
 
-            <audio onPlay={props.toggleButton} onPause={props.toggleButton} onTimeUpdate={props.progressBar}>
-                <source src={props.audioSource} type="audio/mpeg" />
+            <audio
+                ref={props.audioRef} 
+                onPlay={props.toggleButton} 
+                onPause={props.toggleButton} 
+                onTimeUpdate={props.progressBar}
+                onEnded={props.onTrackEnd}
+                src={props.audioSource} 
+                type="audio/mpeg"
+                autoPlay={false}>
+
                 Your browser does not support the audio element.
             </audio> 
 
@@ -24,13 +32,14 @@ const PlayerLeft = (props) => {
             </div>
 
             <div className="Controls">
-                <i className="fas fa-random"></i>
+                <i className="fas fa-random" onClick={props.randomTrack}></i>
                 
-                <i className="fas fa-step-backward"></i>
+                <i className="fas fa-step-backward" onClick={props.prevTrack}></i>
                 <i className="fas fa-play" onClick={props.onPlay}></i>
                 <i className="inactiveBtn fas fa-pause" onClick={props.onPlay}></i>
                 <i className="fas fa-step-forward" onClick={props.nextTrack}></i>
-                <i className="fas fa-redo-alt"></i>
+
+                <i className="fas fa-redo-alt" onClick={props.onRepeat}></i>
             </div>
 
             <h2>{props.track}</h2>
