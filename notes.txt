@@ -1,3 +1,91 @@
+Description of Function:
+
+onPlayClicked()
+1. selects audio tag
+2. audio.play() and sets state to true if audio.paused
+3. else audio.pause() and sets to false 
+
+onTrackEnded()
+1. selects audio tag
+
+2a. if random true
+    -> sets currentTrack to randomTrack (which comes from random function)
+    -> sets audio.src
+
+2b. else if repeat true
+    -> sets the same track and id
+
+2c. else this has another set of conditions that checks for
+    -> if id(pos) is end of trackList array
+    sets to track and id to first index of trackList
+    -> else sets track and id to trackList[pos] & [pos].id 
+
+toggleButton()
+
+1. selects audio, play and pause BTNs
+
+2. if audio.paused sets playBtn
+   else sets pauseBtn
+
+progressBar()
+
+1. it's self descriptive
+
+nextTrack(pos)
+
+1. if pos(id) is last index of tracklist sets to 1
+   else pos++
+2. filters tracklist for pos-> item.id
+    return array of one index
+3. sets track to index of array and id to array[0].id
+
+prevTrack(pos)
+1. checks if pos(id) is === 1 and sets to tracklist array.length
+ to go from 1 to 8
+    else it goes pos--
+2. filter tracklist by pos-> item.id
+3. sets state of track and id to array[0] and [0].id
+
+randomSameCheck(pos)
+1. checks that id is not repeated with if else
+    -> uses recursiveness OR IS IT recursivity :)
+
+randomTrack(pos)
+
+1. calls randomSameCheck
+2. sets state of randomTrack to trackList[pos] and  
+    randomId to [pos].id
+3. if random state false
+    -> sets color of btn and state to true
+    else
+    -> backwards
+
+repeat()
+
+1. select repeatBTN
+2. if repeat state false
+    -> sets BTN color and state to true 
+    else
+    -> backwards
+
+listClick(pos)
+
+1. sets track state to pos(index) of trackList
+    and id to [pos].id
+
+
+ISSUEs/BUGs
+
+when REPEAT or RANDOM active and playing
+if next or prev BTN pressed it BREAKS
+
+when NEXT or PREV pressed random and/or repeat
+btns gets deactivated
+
+
+
+******************************
+this is reply from Vaibhav
 regarding state.trackList
 
 The better way to do this would be, you store the information of current playing song inside a state variable say 'currentSongInfo' which contains the same object of each song which we are getting inside the API call response

@@ -123,3 +123,8 @@ h2 {
     margin: 0;
     margin-top: 15px;
 }
+
+.Loading {
+    color: whitesmoke;
+    margin: 50% auto;
+}

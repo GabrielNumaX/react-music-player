@@ -39,7 +39,7 @@ class App extends Component {
 
   componentDidUpdate() {
 
-    console.log('componentDidUpdate');
+    // console.log('componentDidUpdate');
     
     if(this.state.playing) {
 
@@ -91,7 +91,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
 */
  onTrackEnded = (pos) => {
 
-  console.log('onTrackEnded')
+  // console.log('onTrackEnded')
 
   // console.log(this.state.random);
 
@@ -109,6 +109,16 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     audio.src = this.state.currentTrack.file;
 
   }
+
+  else if(this.state.repeat){
+
+    this.setState({
+      currentTrack: this.state.currentTrack,
+      currentId: this.state.currrentId
+    })
+
+  }
+
 
   else{
 
@@ -150,14 +160,14 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     }
   }
 
-  if(this.state.repeat){
+  // if(this.state.repeat){
 
-    this.setState({
-      currentTrack: this.state.currentTrack,
-      currentId: this.state.currrentId
-    })
+  //   this.setState({
+  //     currentTrack: this.state.currentTrack,
+  //     currentId: this.state.currrentId
+  //   })
 
-  }
+  // }
     // this.audioElement.current.play();
     // console.log(this.audioElement.current);
     // console.log(this.audioElement);
@@ -256,52 +266,41 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     //between 7 & 0 for index of randomTrack()
     const random = Math.floor(Math.random() * (this.state.trackList.length - 1 + 0)) + 1;
 
+    // console.log('inside randomSame ' + random)
+
     if(random === pos){
+
+      // console.log('inside randomSame if ' + random)
 
 
       this.randomSameCheck(pos)
     }
     else {
+
+      // console.log('inside randomSame else ' + random)
+
       pos = random;
     }
+
+    return pos;
 
   }
 
   randomTrack(pos) {
 
-    this.randomSameCheck(pos)
+    //it cost me a while to realize this IMPORTANT
+    pos = this.randomSameCheck(pos)
 
-    // const randomTra = this.state.trackList.filter(item => {
-     
-    //   return item.id === pos.toString();
-    // });
+    // console.log('inside random '+ pos);
 
-    // this was causing the error
-    // this.setState({
-    //   randomTrack: randomTra[0],
-    //   randomId: randomTra[0].id,
-    // });
-
-    pos = parseInt(pos);
-
-    // console.log(this.state.trackList[pos]);
-    // console.log(this.state.trackList[pos].id);
-    // this.setState({
-    //   randomTrack: this.state.trackList[pos],
-    //   randomId: this.state.trackList[pos].id
-    // })
+    // console.log(pos)
 
     this.setState( {
         randomTrack: this.state.trackList[pos],
         randomId: this.state.trackList[pos].id
     });
 
-    // console.log(this.state.randomTrack);
-    // console.log(this.state.randomId);
-
     const randomBtn = document.querySelector('.fa-random');
-
-    
 
     if(!this.state.random) {
 
@@ -312,8 +311,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
       // console.log(randomBtn.style.color);
 
       this.setState({random: true});
-
-      
+  
     }
     else {
 
@@ -326,18 +324,15 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
 
   repeat = () => {
 
-    // console.log('repeat')
-    // alert('repeat');
-
     const repeatBtn = document.querySelector('.fa-redo-alt');
-    
-    // const repeat = this.state.repeat;
 
     if(!this.state.repeat){
 
       // console.log('repeat if -> false')
 
-      this.setState({repeat: true});
+      this.setState((prevState) =>{
+        return {repeat: !prevState.repeat}
+      });
 
       repeatBtn.style.color = 'whitesmoke';
 
@@ -361,41 +356,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     })
   }
   
-
   render() {
-
-    // const response = this.state.trackList;
-
-    // console.log('response ', response);
-
-    // const MainPlayer = this.state.trackList.map((item, pos) => {
-
-    //   if (pos === 0) {
-
-    //     return(
-    //       <PlayerLeft key={pos}
-    //                   id={item.id} 
-    //                   albumCover={item.albumCover}
-    //                   altText={item.track}
-    //                   toggleButton={this.toggleButton}
-    //                   progressBar={this.progressBar}
-    //                   nextTrack={() => this.nextTrack(pos)}
-    //                   audioSource={item.file}
-    //                   onPlay={this.onPlayClicked}
-    //                   track={item.track}
-    //                   artist={item.artist} />
-    //     );
-    //    }
-    // })
-
-    // console.log(this.state.trackList);
-    // console.log(this.state.currentTrack);
-    // console.log(this.state.currentId);
-    
-
-    //this works but it does not reflects in the return inside render()
-    //console.log(this.state.objPos);
-    //console.log(this.state.trackList[this.state.objPos]);
 
     const ListPlayer = this.state.trackList.map((item, pos) => {
 
@@ -410,9 +371,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
                     artist={item.artist} />
 
       );
-
     })
-
 
     return (
       <div className="App">
@@ -448,7 +407,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
           :
 
           <main className="Player">
-            <h1>Playlist Loading...</h1>
+            <h1 className="Loading">Playlist Loading...</h1>
           </main>         
 
           }
