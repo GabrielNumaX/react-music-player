@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import { HashRouter} from 'react-router-dom';
+
 import PlayerLeft from './PlayerLeft';
 import PlayerRight from './PlayerRight';
 
@@ -25,7 +27,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    axios.get('http://5dd1894f15bbc2001448d28e.mockapi.io/playlist')
+    axios.get('https://5dd1894f15bbc2001448d28e.mockapi.io/playlist')
     .then(response => {
       this.setState({
         trackList: response.data, 
@@ -374,45 +376,53 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     })
 
     return (
-      <div className="App">
+      <HashRouter basename={process.env.PUBLIC_URL}>
+      
+        <div className="App">
 
-          {
-          this.state.trackList !== undefined || this.state.trackList !== [] || this.state.trackList !== null ?
+            {
+            // this.state.trackList !== undefined || this.state.trackList !== [] || this.state.trackList !== null ?
 
-          <main className="Player">
+            this.state.trackList !== [] ?
 
-            <PlayerLeft audioRef={(el) => {this.audioElement = el}}
-                        key={this.state.currentTrack.id}
-                        id={this.state.currentTrack.id} 
-                        albumCover={this.state.currentTrack.albumCover}
-                        altText={this.state.currentTrack.track}
-                        toggleButton={this.toggleButton}
-                        progressBar={this.progressBar}
-                        nextTrack={() => this.nextTrack(this.state.currentId)}
-                        prevTrack={() => this.prevTrack(this.state.currentId)}
-                        randomTrack={() => this.randomTrack(this.state.currentId)}
-                        audioSource={this.state.currentTrack.file}
-                        onPlay={this.onPlayClicked}
-                        onTrackEnd={() => this.onTrackEnded(this.state.currentId)}
-                        onRepeat={this.repeat}
-                        track={this.state.currentTrack.track}
-                        artist={this.state.currentTrack.artist} />
+            <main className="Player">
+
+              <PlayerLeft audioRef={(el) => {this.audioElement = el}}
+                          key={this.state.currentTrack.id}
+                          id={this.state.currentTrack.id} 
+                          albumCover={this.state.currentTrack.albumCover}
+                          altText={this.state.currentTrack.track}
+                          toggleButton={this.toggleButton}
+                          progressBar={this.progressBar}
+                          nextTrack={() => this.nextTrack(this.state.currentId)}
+                          prevTrack={() => this.prevTrack(this.state.currentId)}
+                          randomTrack={() => this.randomTrack(this.state.currentId)}
+                          audioSource={this.state.currentTrack.file}
+                          onPlay={this.onPlayClicked}
+                          onTrackEnd={() => this.onTrackEnded(this.state.currentId)}
+                          onRepeat={this.repeat}
+                          track={this.state.currentTrack.track}
+                          artist={this.state.currentTrack.artist} />
+            
+
+              <aside className="Right"> 
+                {ListPlayer}
+              </aside>
+            </main>
+
+            :
+
            
 
-            <aside className="Right"> 
-              {ListPlayer}
-            </aside>
-          </main>
+            <main className="Player">
+              <h1 className="Loading">Playlist Loading...</h1>
+            </main>         
 
-          :
-
-          <main className="Player">
-            <h1 className="Loading">Playlist Loading...</h1>
-          </main>         
-
+            
           }
 
-      </div>
+        </div>
+      </HashRouter>
     );
   }
 }

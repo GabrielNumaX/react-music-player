@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .Player {
     width: 80%;
     height: 80%;
@@ -14,7 +18,8 @@
 
 .Left {
     border-radius: 8px;
-    width: calc(100% - 260px);
+    /* width: calc(100% - 260px); */
+    width: 65%;
     height: 100%;
     background-color: #443d7c;
     display: flex;
@@ -27,7 +32,8 @@
 
 .Right {
     border-radius: 8px;
-    min-width: 260px;
+    /* min-width: 260px; */
+    width: 35%;
     /* height: 100%; */
     overflow: auto;
     background-color: #443d7c;
@@ -43,7 +49,7 @@
 }
 
 .TrackLength {
-    margin: 20px 0;
+    margin: 4% 0;
     width: 90%;
     height: 4px;
     border-radius: 8px;
@@ -96,7 +102,7 @@ h2 {
 }
 
 .Card {
-    height: 100px;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -109,22 +115,158 @@ h2 {
 
 .Card img {
     height: 70px;
-    margin-left: 10px;
+    margin-left: 5%;
 }
 
 .CardTitle {
     /* background-color: floralwhite; */
     margin: 0 auto;  
-    height: 100%;
+    height: auto;
+    padding: 0 5%;
     text-align: center;
 }
 
 .CardTitle h4 {
     margin: 0;
-    margin-top: 15px;
+    margin-top: 10%;
+    padding-right: 5%;
 }
 
 .Loading {
     color: whitesmoke;
     margin: 50% auto;
+}
+
+@media (max-width: 770px){
+
+    .Card img {
+        height: 50px;
+        margin-left: 5%;
+    }
+    
+    .CardTitle h4 {
+        font-size: 14px;
+    }
+
+    .CardTitle h5 {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 450px){
+
+    .fas {     
+        font-size: 18px;
+
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+}
+
+@media (max-height: 380px){
+
+
+    .TrackLength {
+        height: 2px;
+    }
+
+    .fas {     
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    h2, h3 {
+        margin-top: 8px;
+    }
+}
+
+@media (max-height: 300px){
+
+    .AlbumImg{
+        height: 50%;
+    }
+
+    h2, h3 {
+        margin-top: 4px;
+    }
+}
+
+@media (max-height: 250px){
+
+    .AlbumImg{
+        height: 40%;
+    }
+
+    .fas {
+        font-size: 12px;
+    }
+}
+
+
+
+@media (max-width: 600px){
+
+    .Card img {
+        height: 40px;
+        margin-left: 5%;
+    }
+    
+    .CardTitle h4 {
+        font-size: 12px;
+    }
+
+    .CardTitle h5 {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 510px) {
+    .CardTitle h4 {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 450px){
+
+    .Left {
+        width: 60%;
+    }
+
+    .Right {
+        width: 40%;
+    }
+
+    .AlbumImg {
+        height: 50%;
+        margin-bottom: 5%;
+    }
+
+    .TrackLength {
+        margin-bottom: 10%;
+    }
+}
+
+@media (max-width: 370px){
+
+    .AlbumImg {
+        height: 40%;
+    }
+
+    .fas {
+        font-size: 14px;
+        margin-right: 14px;
+    }
 }
