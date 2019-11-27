@@ -35,18 +35,29 @@ class App extends Component {
         currentId: response.data[0].id});
     })
     .catch(error => {
+      console.log(error);
       alert("There's been an ERROR reload page")
     })
   }
 
   componentDidUpdate() {
 
-    // console.log('componentDidUpdate');
+    console.log('componentDidUpdate');
     
     if(this.state.playing) {
 
       this.audioElement.play();
     }
+
+    // console.log('random' ,this.state.random);
+
+    console.log('repe bef ' ,this.state.repeat);
+
+    
+
+    // console.log('repe af ' ,this.state.repeat);
+
+
 
     //try did to KEEP button active but it's calling twice and deactivating it
     // if(this.state.random){
@@ -64,19 +75,20 @@ class App extends Component {
 
     const audio = document.querySelector('audio');
 
-    const playState = this.state.playing;
+    const playState = true;
 
     if(audio.paused) {
 
       audio.play();
 
-      this.setState({playing: !playState});
+      this.setState({playing: playState});
    }
    else {
  
      audio.pause();
 
      this.setState({playing: !playState});
+
    }
  
     // console.log(audio.autoplay);
@@ -112,54 +124,57 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
 
   }
 
-  else if(this.state.repeat){
+  else if(this.state.random && this.state.currentTrack === this.state.randomTrack){
 
-    this.setState({
-      currentTrack: this.state.currentTrack,
-      currentId: this.state.currrentId
-    })
-
+    this.randomTrack(this.state.currentId);
   }
 
 
-  else{
+  if(this.state.repeat) {
+    console.log('onEnded');
+    this.repeat(true);
 
-    if(parseInt(pos) === this.state.trackList.length) {
+    console.log(this.state.repeat);
+  }
+  // if(this.state.repeat){
 
-      this.setState({
-        currentTrack: this.state.trackList[0],
-        currentId: this.state.trackList[0].id
-      });
+  //   console.log('onEnded')
 
-      audio.src = this.state.currentTrack.file;
+  //   this.repeat();
 
-    }    
-    else {
+  // }
 
-      // console.log('inside else random FALSE');
-      // console.log('pos before '+ pos);
-      // console.log(this.state.trackList[pos].track);
 
-      pos = parseInt(pos)
+  if(parseInt(pos) === this.state.trackList.length) {
 
-      //I was setting the index of array with id 
-      //and it was NOT returning the next Obj so 
-      //I'm just commenting next line and using id to set next index 
+    this.setState({
+      currentTrack: this.state.trackList[0],
+      currentId: this.state.trackList[0].id
+    });
 
-      // pos++;
+    audio.src = this.state.currentTrack.file;
 
-      // console.log('pos after '+ pos);
-      // console.log(this.state.trackList[pos].track);
+  }    
+  else {
 
-      this.setState({
-        currentTrack: this.state.trackList[pos],
-        currentId: this.state.trackList[pos].id
-      });
+    // console.log('inside else random FALSE');
+    // console.log('pos before '+ pos);
+    // console.log(this.state.trackList[pos].track);
 
-      // console.log(this.state.currentTrack.file)
+    pos = parseInt(pos)
 
-      audio.src = this.state.currentTrack.file;
-    }
+    //I was setting the index of array with id 
+    //and it was NOT returning the next Obj so 
+    //I'm just commenting next line and using id to set next index 
+
+    // pos++;
+
+    this.setState({
+      currentTrack: this.state.trackList[pos],
+      currentId: this.state.trackList[pos].id
+    });
+
+    audio.src = this.state.currentTrack.file;
   }
 
   // if(this.state.repeat){
@@ -214,6 +229,19 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     const percent = (audio.currentTime / audio.duration) * 100;
 
     progressBar.style.flexBasis = `${percent}%`;
+  }
+
+  progressBarUpdate = (e) => {
+
+    // console.log(e);
+
+    const audio = document.querySelector('audio');
+    const progress = document.querySelector('.TrackLength')
+  
+    const time = (e.nativeEvent.offsetX / progress.offsetWidth) * audio.duration;
+
+    audio.currentTime = time;
+  
   }
 
   nextTrack = (pos) => {
@@ -308,7 +336,7 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
 
       //color it's changing and getting printed
       //but NOT changes are applied
-      randomBtn.style.color = 'whitesmoke';
+      randomBtn.style.color = 'black';
 
       // console.log(randomBtn.style.color);
 
@@ -317,55 +345,61 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
     }
     else {
 
-      randomBtn.style.color = 'black';
+      randomBtn.style.color = 'whitesmoke';
 
       this.setState({random: false})
     }
 
   } //end function random
 
-  repeat = () => {
+  repeat = (boolean) => {
 
     const repeatBtn = document.querySelector('.fa-redo-alt');
 
-    if(!this.state.repeat){
+    const repState = true;
+
+    if(boolean === false){
 
       // console.log('repeat if -> false')
 
-      this.setState((prevState) =>{
-        return {repeat: !prevState.repeat}
-      });
+      this.setState({repeat: repState});
 
-      repeatBtn.style.color = 'whitesmoke';
+      repeatBtn.style.color = 'black';
 
     }
     else {
 
       // console.log('repeat if -> true')
 
-      this.setState({repeat: false});
+      this.setState({repeat: !repState});
 
-      repeatBtn.style.color = 'black';
+      repeatBtn.style.color = 'whitesmoke';
     }
 
   } //end function repeat
 
   listClick = (pos) => {
 
+    const audio = document.querySelector('audio');
+
     this.setState({
         currentTrack: this.state.trackList[pos],
-        currentId: this.state.trackList[pos].id
+        currentId: this.state.trackList[pos].id,
+        playing: true
     })
+
+    audio.play();
   }
   
   render() {
 
     const ListPlayer = this.state.trackList.map((item, pos) => {
 
+      
       return(
 
         <PlayerRight key={item.id}
-                    onListClick={() => this.listClick(pos)}
+                    onListClick={() => {this.listClick(pos)}}
                     position={pos}
                     listImage={item.albumCover}
                     altText={item.track}
@@ -394,13 +428,14 @@ if NO random -> checks if last obj of array->  sets track and id to first track 
                           altText={this.state.currentTrack.track}
                           toggleButton={this.toggleButton}
                           progressBar={this.progressBar}
+                          progressBarUpdate={(e) => this.progressBarUpdate(e)}
                           nextTrack={() => this.nextTrack(this.state.currentId)}
                           prevTrack={() => this.prevTrack(this.state.currentId)}
                           randomTrack={() => this.randomTrack(this.state.currentId)}
                           audioSource={this.state.currentTrack.file}
                           onPlay={this.onPlayClicked}
                           onTrackEnd={() => this.onTrackEnded(this.state.currentId)}
-                          onRepeat={this.repeat}
+                          onRepeat={() => this.repeat(this.state.repeat)}
                           track={this.state.currentTrack.track}
                           artist={this.state.currentTrack.artist} />
             

@@ -25,8 +25,8 @@ const PlayerLeft = (props) => {
                 Your browser does not support the audio element.
             </audio> 
 
-            <div className="TrackLength">
-                <div className="TrackLengthFilled">
+            <div className="TrackLength" onClick={props.progressBarUpdate}>
+                <div className="TrackLengthFilled" >
 
                 </div>
             </div>
