@@ -144,3 +144,136 @@ h2 {
     color: whitesmoke;
     margin: 50% auto;
 }
+
+@media (max-width: 770px) {
+
+    .Card img {
+        height: 50px;
+    }
+
+    .CardTitle h4 {
+        font-size: 14px;
+    }
+
+    .CardTitle h5 {
+        font-size: 12px;
+    }
+    
+}
+
+@media (max-width: 640px) {
+
+    .Left {
+        width: 55%;
+    }
+
+    .Right {
+        width: 45%;
+    }
+
+    .fas {
+        font-size: 20px; 
+    }
+}
+
+@media (max-width: 510px) {
+
+    .fas {
+        font-size: 16px; 
+    }
+
+    .TrackLength {
+        margin: 10% 0;
+    }
+
+    h2 {
+        font-size: 16px; 
+    }
+
+    h3 {
+        font-size: 14px; 
+    }
+}
+
+@media (max-width: 420px) {
+    
+    .fas {
+        margin-right: 10px;
+    }
+    
+    .Card img {
+        height: 35px;
+    }
+
+    .CardTitle h4 {
+        font-size: 12px;
+    }
+
+    .CardTitle h5 {
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width:370px) {
+    
+    .fas {
+        font-size: 14px; 
+    }
+
+    h2 {
+        font-size: 14px; 
+    }
+
+    h3 {
+        font-size: 12px; 
+    }
+}
+
+/* height media queries */
+
+@media (max-height: 450px){
+
+    .AlbumImg {
+        width: auto;
+        height: 30%;
+        margin-top: 4%;
+    }
+    
+}
+
+@media (max-height: 388px){
+
+    .AlbumImg {
+        width: auto;
+        height: 80px;
+        margin-top: 4%;
+    }
+
+    .fas {
+        font-size: 14px; 
+    }
+
+    h2 {
+        font-size: 14px; 
+    }
+
+    h3 {
+        font-size: 12px; 
+    }
+}
+
+@media (max-height: 230px){
+
+    .AlbumImg {
+        width: auto;
+        height: 30%;
+        margin-top: 4%;
+    }
+
+    .fas {
+        font-size: 16px;
+    }
+
+}
+
