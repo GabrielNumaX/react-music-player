@@ -8,4 +8,11 @@
   align-items: center;
 }
 
+@media (max-width: 380px) {
+
+  .App {
+    height: auto;
+  }
+}
+
 

@@ -214,7 +214,7 @@ h2 {
     }
 
 }
-
+/* 
 @media (max-width:370px) {
     
     .fas {
@@ -228,10 +228,10 @@ h2 {
     h3 {
         font-size: 12px; 
     }
-}
+} */
 
 /* height media queries */
-
+/* 
 @media (max-height: 450px){
 
     .AlbumImg {
@@ -275,5 +275,40 @@ h2 {
         font-size: 16px;
     }
 
-}
+} */
 
+@media (max-width: 380px) {
+
+        
+    .Player {
+        width: 80%;
+        height: 90%;
+        flex-direction: column;
+        margin: 5% 0;
+    }
+
+    .Left {
+        width: 100%;
+        height: 30%;
+    }
+
+    .Right {
+        width: 100%;
+        -webkit-box-shadow: 0px 0px 10px 1px rgba(255,255,255,1);
+        -moz-box-shadow: 0px 0px 10px 1px rgba(255,255,255,1);
+        box-shadow: 0px 0px 10px 1px rgba(255,255,255,1);
+        margin-top: 20px;
+    }
+
+
+    .fas {
+        margin-right: 20px;
+        font-size: 22px;
+    }
+
+    .Card img {
+        height: 60px;
+        margin-left: 5%;
+    }
+
+}
