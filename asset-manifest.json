@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-music-player/static/css/main.81643129.chunk.css",
+    "main.css": "/react-music-player/static/css/main.3641602c.chunk.css",
     "main.js": "/react-music-player/static/js/main.70c3e287.chunk.js",
     "main.js.map": "/react-music-player/static/js/main.70c3e287.chunk.js.map",
     "runtime-main.js": "/react-music-player/static/js/runtime-main.3380ce45.js",
@@ -8,14 +8,14 @@
     "static/js/2.b119a327.chunk.js": "/react-music-player/static/js/2.b119a327.chunk.js",
     "static/js/2.b119a327.chunk.js.map": "/react-music-player/static/js/2.b119a327.chunk.js.map",
     "index.html": "/react-music-player/index.html",
-    "precache-manifest.0f786d65c11c4076083f3f3c6096bdb6.js": "/react-music-player/precache-manifest.0f786d65c11c4076083f3f3c6096bdb6.js",
+    "precache-manifest.17b259bfd180a2b7189b9c55630564dd.js": "/react-music-player/precache-manifest.17b259bfd180a2b7189b9c55630564dd.js",
     "service-worker.js": "/react-music-player/service-worker.js",
-    "static/css/main.81643129.chunk.css.map": "/react-music-player/static/css/main.81643129.chunk.css.map"
+    "static/css/main.3641602c.chunk.css.map": "/react-music-player/static/css/main.3641602c.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.3380ce45.js",
     "static/js/2.b119a327.chunk.js",
-    "static/css/main.81643129.chunk.css",
+    "static/css/main.3641602c.chunk.css",
     "static/js/main.70c3e287.chunk.js"
   ]
 }
